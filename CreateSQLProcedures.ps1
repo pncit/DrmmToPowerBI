@@ -12,7 +12,7 @@ if ( $null -ne $env:DrmmToPowerBICredentialKey ) {
 }
 
 # Import Module
-Remove-Module SQLPS
+Remove-Module SQLPS -ErrorAction SilentlyContinue
 Import-Module SQLServer -Force
 
 # Create SQL Connection Parameters
