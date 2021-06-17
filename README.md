@@ -5,6 +5,11 @@ This contribution is a cooperation between Datto and myself, we both agreed to m
 You'll need a Microsoft SQL Server to store the Datto RMM data.  You can download [Microsoft SQL Express](https://www.microsoft.com/en-gb/sql-server/sql-server-downloads) for testing.  Store the SQL credentials in the provide registry import file.
 ## API
 You'll need to create API keys to run the PowerShell scripts.  Find more information how to create API keys in the [Datto Online Help](https://help.aem.autotask.net/en/Content/2SETUP/APIv2.htm).  Store the API keys in the provide registry file.
+## PowerShell
+You'll need to install the [SqlServer PowerShell Module](https://www.powershellgallery.com/packages/SqlServer) developed and maintained by Microsoft. You need to install it with the `AllowClobber` flag because of overlaps between SQLPS and SqlServer:
+```powershell
+Install-Module -Name SqlServer -AllowClobber
+```
 # Scripts
 ## Set Config
 You only need to run this [script](https://github.com/aaronengels/DrmmToPowerBI/blob/main/Set-Config.ps1) once. It is an interactive script that sets registry values for you based on your input. It also allows you to encrypt your SQL password and Datto RMM API Secret Key so it is not stored in plaintext in the registry. If you do opt to encrypt, this script will provide you with the randomly generated encryption key. In order to run the remaining scripts, you will need to provide that key in the form of the variable `$env:DrmmToPowerBICredentialKey` (this is designed so that you can store the key in the Datto RMM system as a masked account variable and run UpdateSQLTables.ps1 as a component).

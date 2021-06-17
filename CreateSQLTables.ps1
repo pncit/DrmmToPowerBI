@@ -6,6 +6,7 @@ if (!$Config) {
 }
 
 # Import Module
+Remove-Module SQLPS
 Import-Module SQLServer -Force
 
 # Create SQL Connection Parameters
@@ -26,4 +27,4 @@ if ( $null -ne $env:DrmmToPowerBICredentialKey ) {
 $connString = 'Server={0};Database={1};User Id={2};Password={3};' -f [array]$sqlParams.Values
 
 # Run SQL query to Create SQL Tables
-Invoke-Sqlcmd -ConnectionString $connString -InputFile 'CreateTables.sql'
+Invoke-Sqlcmd -ConnectionString $connString -InputFile 'CreateSQLTables.sql'
